@@ -18,9 +18,13 @@ describe('Form', () => {
       .get('form input[name="urlToShorten"]').should('have.value', 'https://somekindoflongurl.com/abcdefg')
   })
   it('Should render the new shortened URL when a user fills out and submits the form', () => {
-    cy.get('form input[name="title"]').type(`Test${Date.now()}`)
-      .get('form input[name="urlToShorten"]').type(`https://somekindoflongurl.com/abcdefg${Date.now()}`)
+    const uniqueUrl = Date.now()
+    cy.get('form input[name="title"]').type(`Test${uniqueUrl}`)
+      .get('form input[name="urlToShorten"]').type(`https://somekindoflongurl.com/abcdefg${uniqueUrl}`)
+      // .intercept('POST', 'http://localhost:3001/api/v1/urls', {
+      //   statusCode: 200
+      // })
       .get('button').click()
-      //new shortened url is rendered
+      .get('h3').should('have.text', `Test${uniqueUrl}`)
   })
 })

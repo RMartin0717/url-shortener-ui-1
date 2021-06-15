@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { postUrl } from '../../apiCalls';
 
 class UrlForm extends Component {
   constructor(props) {
@@ -16,12 +15,12 @@ class UrlForm extends Component {
   }
 
   handleSubmit = e => {
+    e.preventDefault();
     if (this.state.title && this.state.urlToShorten) {
       const newUrl = {
         long_url: this.state.urlToShorten,
         title: this.state.title
       }
-      postUrl(newUrl);
       this.props.addUrl(newUrl);
       this.clearInputs();
     } else {

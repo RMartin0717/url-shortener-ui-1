@@ -1,16 +1,16 @@
 describe('Form', () => {
   beforeEach(() => {
-    cy.fixture('urls').then((urls) => {
-      cy.intercept('http://localhost:3001/api/v1/urls', { body: urls }).as('urls')
-    })
     cy.intercept('POST', 'http://localhost:3001/api/v1/urls', {
       statusCode: 201,
       body: {
-        title: 'Test123',
+        id: 99999,
         long_url: 'https://somekindoflongurl.com/abcdefgTest123',
         short_url: 'http://localhost:3001/useshorturl/99999',
-        id: 99999
+        title: 'Test123'
       }
+    })
+    cy.fixture('urls').then((urls) => {
+      cy.intercept('http://localhost:3001/api/v1/urls', { body: urls }).as('urls')
     })
     cy.visit('http://localhost:3000/')
   })

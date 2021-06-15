@@ -30,6 +30,7 @@ describe('Form', () => {
     cy.get('form input[name="title"]').type(`Test123`)
       .get('form input[name="urlToShorten"]').type(`https://somekindoflongurl.com/abcdefgTest123`)
       .get('button').click()
-      .get('h3').should('have.text', `Test123`)
+      .get('div[id="99999"] > h3').should('have.text', `Test123`)
+      .get('div[id="99999"] > a').should('have.text', `http://localhost:3001/useshorturl/99999`)
   })
 })

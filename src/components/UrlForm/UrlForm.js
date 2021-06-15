@@ -16,14 +16,13 @@ class UrlForm extends Component {
   }
 
   handleSubmit = e => {
-
     if (this.state.title && this.state.urlToShorten) {
       const newUrl = {
         long_url: this.state.urlToShorten,
         title: this.state.title
       }
-      console.log(newUrl)
-      postUrl(newUrl)
+      postUrl(newUrl);
+      this.props.addUrl(newUrl);
       this.clearInputs();
     } else {
       return

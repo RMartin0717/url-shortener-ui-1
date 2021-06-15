@@ -18,8 +18,8 @@ describe('Form', () => {
       .get('form input[name="urlToShorten"]').should('have.value', 'https://somekindoflongurl.com/abcdefg')
   })
   it('Should render the new shortened URL when a user fills out and submits the form', () => {
-    cy.get('form input[name="title"]').type('Test4')
-      .get('form input[name="urlToShorten"]').type('https://somekindoflongurl.com/abcdefg')
+    cy.get('form input[name="title"]').type(`Test${Date.now()}`)
+      .get('form input[name="urlToShorten"]').type(`https://somekindoflongurl.com/abcdefg${Date.now()}`)
       .get('button').click()
       //new shortened url is rendered
   })
